@@ -15,11 +15,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SerchPage {
 
+  keywords: string = "";
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SerchPage');
+  }
+
+  getEvents(ev) {
+    console.log(this.keywords);
   }
 
 }
