@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { EventProvider } from '../../providers/event/event';
 /**
  * Generated class for the SerchPage page.
  *
@@ -16,8 +16,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class SerchPage {
 
   keywords: string = "";
+  events: any[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+     public navCtrl: NavController,
+     public navParams: NavParams,
+     public loadingCtrl: LoadingController,
+     public eventProvider: EventProvider,
+   ) {
   }
 
   ionViewDidLoad() {
@@ -26,6 +32,27 @@ export class SerchPage {
 
   getEvents(ev) {
     console.log(this.keywords);
+    const searchKeywords:string = this.keywords.trim();
+
+    if (!searchKeywords) return;
+
+    const loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    loader.present();
+
+    const kwds = searchKeywords.split(' ').filter(v => v !== "");
+
+    this.eventProvider.search(kwds).subscribe((body: any) => {
+      if (body && body.events) {
+        if (this.keywords === searchKeywords) {
+          this.events = body.events;
+        }
+      }
+      loader.dismiss();
+    }, (error: any) => {
+      loader.dismiss();
+    })
   }
 
 }
