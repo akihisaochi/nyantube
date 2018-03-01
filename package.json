@@ -1,8 +1,12 @@
 {
-  "name": "event-san",
+  "name": "-san",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
+  "description": "An Ionic project",
+  "config": {
+    "ionic_copy": "./config/custom.copy.config.js"
+  }
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
