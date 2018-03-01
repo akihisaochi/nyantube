@@ -55,4 +55,11 @@ export class SerchPage {
     })
   }
 
+  openEvent(event) {
+    this.navCtrl.push('EventDetailPage', {
+      eventId: event.event_id,
+      event: event
+    });
+  }
+
 }
