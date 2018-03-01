@@ -6,7 +6,7 @@
   "description": "An Ionic project",
   "config": {
     "ionic_copy": "./config/custom.copy.config.js"
-  }
+  },
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
